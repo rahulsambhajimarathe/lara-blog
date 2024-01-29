@@ -27,3 +27,8 @@ Route::post('/register', [AuthController::class, "userregisterController"]);
 Route::get('/verify/{token}', [AuthController::class, "verifyregisterController"]);
 
 Route::get('/forget-password', [AuthController::class, "forgetController"])->name('forget-password');
+Route::post('/forget-password', [AuthController::class, "user_forgetController"]);
+
+
+Route::get('/reset/{token}', [AuthController::class, "user_reset"]);
+Route::post('/reset/{token}', [AuthController::class, "user_reset_save"]);
