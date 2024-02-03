@@ -18,7 +18,7 @@ class AuthController extends Controller
         $remember = !empty($request->remember) ? true : false;
         if( Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)){
             if(!empty(Auth::user()->email_verified_at)){
-                // return redirect("login")->with("success", "login sucess");
+                return redirect("panel/dashboard")->with("success", "login sucess");
                 echo "ok";
                 die;
             }else{
@@ -102,7 +102,7 @@ class AuthController extends Controller
             abort(404);
         }
     }
-    function user_reset_save(request $request, $token){
+    function user_reset_save(request $request,  $token){
         $user = User::where('remember_token', "=", $token)->first();
         if(!empty($user)){
             if($request->password == $request->cpassword){
@@ -126,5 +126,9 @@ class AuthController extends Controller
         }else{
             abort(404);
         }
+    }
+    function logout(){
+        Auth::logout();
+        return redirect('login');
     }
 }
