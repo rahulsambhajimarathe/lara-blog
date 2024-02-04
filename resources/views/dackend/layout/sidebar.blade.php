@@ -42,7 +42,7 @@
       </li><!-- End Help Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{url('panel/user/list')}}">
+        <a class="nav-link collapsed" href={{route('user-list')}}>
           <i class="bi bi-question-circle"></i>
           <span>User</span>
         </a>
