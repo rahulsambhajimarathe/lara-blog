@@ -15,4 +15,7 @@ class Category extends Model
                     ->paginate(20);
 
     }
+    static public function getSingle($id){
+        return Category::find($id);
+    }
 }

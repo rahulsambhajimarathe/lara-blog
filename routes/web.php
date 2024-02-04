@@ -65,13 +65,13 @@ Route::group(['middleware' => 'adminuser'], function() {
         Route::get('panel/category/list', [CategoryController::class, 'category']);
         
         // user add
-        Route::get('panel/category/add', [CategoryController::class, 'add_category'])->name('add_category');
-        Route::post('panel/category/add', [CategoryController::class, 'add_category_create']);
+            Route::get('panel/category/add', [CategoryController::class, 'add_category'])->name('add_category');
+            Route::post('panel/category/add', [CategoryController::class, 'add_category_create']);
         
-        // user edit
-            Route::get('panel/category/edit/{id}', [CategoryController::class, 'category_user']);
-            Route::post('panel/category/edit/{id}', [CategoryController::class, 'category_user']);
+        // // user edit
+            Route::get('panel/category/edit/{id}', [CategoryController::class, 'category_edit'])->name('edit_category');
+            Route::post('panel/category/edit/{id}', [CategoryController::class, 'update_category']);
             
-        // edit
-            Route::get('panel/category/list/delete/{id}', [CategoryController::class, 'category_user']);
+        // // edit
+            Route::get('panel/category/list/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
 });
