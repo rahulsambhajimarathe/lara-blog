@@ -17,7 +17,11 @@ class UserContoller extends Controller
         return view('dackend\user\add');
     }
     function add_user_create(Request $request){
-        
+        request()->validate([
+            'name'=> "required",
+            'email'=>"required|email|unique:users",
+            'password'=>"required",
+        ]);
         $save = new User;
         $save->name =trim($request->name);
         $save->email =trim($request->email);
@@ -27,10 +31,16 @@ class UserContoller extends Controller
         return redirect('panel/user/list/')->with('success', "User Successfull Created");
     }
     function edit_user($id){
+
         $data['record'] = User::getSingle($id);
         return view('dackend\user\edit', $data);
     }
     function update_user($id, Request $request){
+        request()->validate([
+            'name'=> "required",
+            'email' => "required|email|unique:users,email," . $id,
+            
+        ]);
 
         $save = User::getSingle($id);
         $save->name =trim($request->name);
@@ -45,6 +55,7 @@ class UserContoller extends Controller
     }
 
     function delete_user($id){
+        
         $save = User::getSingle($id);
         $save->is_delete = 1;
         $save->save();

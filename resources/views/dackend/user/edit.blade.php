@@ -30,14 +30,17 @@
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Name</label>
                   <input type="text" class="form-control" id="inputNanme4" name="name" required value="{{$record['name']}}">
+                  <div style="color:red">{{ $errors->first('name') }} </div>
                 </div>
                 <div class="col-12">
                   <label for="inputEmail4" class="form-label">Email</label>
                   <input type="email" class="form-control" id="inputEmail4" name="email" required value="{{$record['email']}}">
+                  <div style="color:red">{{ $errors->first('email') }}</div>
                 </div>
                 <div class="col-12">
                   <label for="inputPassword4" class="form-label">Password</label>
                   <input type="text" class="form-control" id="inputPassword4" name="password">
+                  <div style="color:red">{{ $errors->first('password') }}</div>
                   <p>Due you want change password so please fill password input box</p>
                 </div>
                 <div class="col-12">
