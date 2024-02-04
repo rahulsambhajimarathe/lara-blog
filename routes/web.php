@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserContoller;
+
 use GuzzleHttp\Middleware;
 
 /*
@@ -43,5 +44,19 @@ Route::get('/logout', [AuthController::class, "logout"])->name('logout');
 
 Route::group(['middleware' => 'adminuser'], function() {
     Route::get('panel/dashboard', [DashboardController::class, "adminpanel"]);
+
+
+    // user routes
     Route::get('panel/user/list', [UserContoller::class, 'user'])->name('user-list');
+    
+        // user add
+        Route::get('panel/user/add', [UserContoller::class, 'add_user'])->name('user_add');
+        Route::post('panel/user/add', [UserContoller::class, 'add_user_create']);
+        
+        // user edit
+            Route::get('panel/user/edit/{id}', [UserContoller::class, 'edit_user'])->name('edit_user');
+            Route::post('panel/user/edit/{id}', [UserContoller::class, 'update_user'])->name('edit_user');
+            
+        // edit
+            Route::get('panel/user/list/delete/{id}', [UserContoller::class, 'delete_user'])->name('delete_user');
 });

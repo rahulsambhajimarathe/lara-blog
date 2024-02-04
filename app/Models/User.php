@@ -53,4 +53,7 @@ class User extends Authenticatable
                     ->paginate(20);
 
     }
+    // static function getSingle($id){
+    //     return self::find($id);
+    // }
 }

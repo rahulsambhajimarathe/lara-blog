@@ -36,6 +36,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  @yield('style')
 </head>
 
 <body>
@@ -58,7 +59,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{url('assets/admin/assets/js/main.js')}}"></script>
-
+    @yield('script')
 </body>
 
 </html>

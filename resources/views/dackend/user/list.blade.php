@@ -1,4 +1,7 @@
 @extends('dackend\layout\app')
+@section('style')
+
+@endsection
   @section('content')
   <div class="pagetitle">
       <h1>Tables</h1>
@@ -13,7 +16,7 @@
 
     <section class="section">
       <div class="row">
-
+      @include("fronEnd.layout._message")
 
         <div class="col-lg-12">
 
@@ -21,7 +24,7 @@
             <div class="card-body">
               <h5 class="card-title">
               User List
-                <a href="" class="btn btn-primary pull-right" style="float: right;">Add New</a>
+                <a href="{{ route('user_add') }}" class="btn btn-primary pull-right" style="float: right;">Add New</a>
             </h5>
 
               <!-- Table with stripped rows -->
@@ -43,10 +46,10 @@
                             <th scope="row">{{$data->id}}</th>
                             <td>{{$data->name}}</td>
                             <td>{{$data->email}}</td>
-                            <td>{{ !empty($value->email_verified_at) ? 'Yes': 'No'}}</td>
-                            <td>{{ !empty($value->status) ? 'Verified': 'Not Verified'}}</td>
+                            <td>{{ !empty($data->email_verified_at) ? 'Yes': 'No'}}</td>
+                            <td>{{ !empty($data->status) ? 'Active': 'inactive'}}</td>
                             <td>{{date('d-m-Y H:i:A', strtotime($data->created_at)) }}</td>
-                            <td><a href="panel/user/list/delete/{{$data->id}}" class="btn btn-danger btn-sm">Delete</a> | <a href="user/list/edit/{{$data->id}}" class="btn btn-primary btn-sm">Edit</a></td>
+                            <td><a href="{{url('panel/user/list/delete/'.$data->id)}}" class="btn btn-danger btn-sm" onclick="return confirm(' Are your sure you want to delete record?');" >Delete</a> | <a href="{{url('panel/user/edit/'.$data->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
                         </tr>                        
                         
                     @empty
@@ -68,6 +71,9 @@
         </div>
       </div>
     </section>
+    @section('script')
+
+@endsection
   @endsection
 
   

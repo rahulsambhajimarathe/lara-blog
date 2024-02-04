@@ -43,7 +43,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href={{route('user-list')}}>
-          <i class="bi bi-question-circle"></i>
+          <i class="bi bi-person-fill"></i>
           <span>User</span>
         </a>
       </li><!-- End User Page Nav -->
