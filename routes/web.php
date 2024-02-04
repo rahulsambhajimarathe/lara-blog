@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserContoller;
+use App\Http\Controllers\CategoryContoller;
 
 use GuzzleHttp\Middleware;
 
@@ -59,4 +60,18 @@ Route::group(['middleware' => 'adminuser'], function() {
             
         // edit
             Route::get('panel/user/list/delete/{id}', [UserContoller::class, 'delete_user'])->name('delete_user');
+
+    // category routes
+        Route::get('panel/category/list', [CategoryContoller::class, 'user'])->name('user-list');
+        
+        // user add
+        Route::get('panel/category/add', [CategoryContoller::class, 'add_user'])->name('user_add');
+        Route::post('panel/category/add', [CategoryContoller::class, 'add_user_create']);
+        
+        // user edit
+            Route::get('panel/category/edit/{id}', [CategoryContoller::class, 'edit_user'])->name('edit_user');
+            Route::post('panel/category/edit/{id}', [CategoryContoller::class, 'update_user'])->name('edit_user');
+            
+        // edit
+            Route::get('panel/category/list/delete/{id}', [CategoryContoller::class, 'delete_user'])->name('delete_user');
 });

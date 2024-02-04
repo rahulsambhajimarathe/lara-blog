@@ -22,8 +22,11 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Edit User</h5>
+              <h5 class="card-title">
+              </h5></h5>
 
+                <a href="{{ route('user_add') }}" class="btn btn-primary pull-right" style="float: right;">Add New</a>
+              </h5>
               <!-- Vertical Form -->
               <form class="row g-3" action="" method="post">
                 @csrf
