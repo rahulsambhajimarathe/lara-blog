@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserContoller;
-use App\Http\Controllers\CategoryContoller;
+use App\Http\Controllers\CategoryController;
 
 use GuzzleHttp\Middleware;
 
@@ -62,16 +62,16 @@ Route::group(['middleware' => 'adminuser'], function() {
             Route::get('panel/user/list/delete/{id}', [UserContoller::class, 'delete_user'])->name('delete_user');
 
     // category routes
-        Route::get('panel/category/list', [CategoryContoller::class, 'user'])->name('user-list');
+        Route::get('panel/category/list', [CategoryController::class, 'category']);
         
         // user add
-        Route::get('panel/category/add', [CategoryContoller::class, 'add_user'])->name('user_add');
-        Route::post('panel/category/add', [CategoryContoller::class, 'add_user_create']);
+        Route::get('panel/category/add', [CategoryController::class, 'add_category'])->name('add_category');
+        Route::post('panel/category/add', [CategoryController::class, 'add_category_create']);
         
         // user edit
-            Route::get('panel/category/edit/{id}', [CategoryContoller::class, 'edit_user'])->name('edit_user');
-            Route::post('panel/category/edit/{id}', [CategoryContoller::class, 'update_user'])->name('edit_user');
+            Route::get('panel/category/edit/{id}', [CategoryController::class, 'category_user']);
+            Route::post('panel/category/edit/{id}', [CategoryController::class, 'category_user']);
             
         // edit
-            Route::get('panel/category/list/delete/{id}', [CategoryContoller::class, 'delete_user'])->name('delete_user');
+            Route::get('panel/category/list/delete/{id}', [CategoryController::class, 'category_user']);
 });
