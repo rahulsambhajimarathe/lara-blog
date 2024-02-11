@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserContoller;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BlogController;
 
 use GuzzleHttp\Middleware;
 
@@ -58,20 +59,34 @@ Route::group(['middleware' => 'adminuser'], function() {
             Route::get('panel/user/edit/{id}', [UserContoller::class, 'edit_user'])->name('edit_user');
             Route::post('panel/user/edit/{id}', [UserContoller::class, 'update_user'])->name('edit_user');
             
-        // edit
+        // delete
             Route::get('panel/user/list/delete/{id}', [UserContoller::class, 'delete_user'])->name('delete_user');
 
     // category routes
         Route::get('panel/category/list', [CategoryController::class, 'category']);
         
-        // user add
+        // category add
             Route::get('panel/category/add', [CategoryController::class, 'add_category'])->name('add_category');
             Route::post('panel/category/add', [CategoryController::class, 'add_category_create']);
         
-        // // user edit
+        // // category edit
             Route::get('panel/category/edit/{id}', [CategoryController::class, 'category_edit'])->name('edit_category');
             Route::post('panel/category/edit/{id}', [CategoryController::class, 'update_category']);
             
-        // // edit
+        // // category delete
             Route::get('panel/category/list/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete_category');
+
+    // blog Routes
+    Route::get('panel/blog/list', [BlogController::class, 'blog']);
+
+        // blog add
+        Route::get('panel/blog/add', [BlogController::class, 'add_blog'])->name('add_blog');
+        Route::post('panel/blog/add', [BlogController::class, 'add_blog_create']);
+
+        // // blog edit
+        Route::get('panel/blog/edit/{id}', [BlogController::class, 'post_edit'])->name('edit_post');
+        Route::post('panel/blog/edit/{id}', [BlogController::class, 'update_post']);
+        
+    // // blog delete
+        Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_post'])->name('delete_post');
 });

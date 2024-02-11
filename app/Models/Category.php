@@ -15,6 +15,13 @@ class Category extends Model
                     ->paginate(20);
 
     }
+    static function getCategory(){
+        return self::select('categories.*')
+                    ->where('is_delete', '=', 0)
+                    ->where('status', '=', 1)
+                    ->get();
+
+    }
     static public function getSingle($id){
         return Category::find($id);
     }
