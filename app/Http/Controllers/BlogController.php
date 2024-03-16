@@ -11,9 +11,9 @@ use Illuminate\Support\Str;
 class BlogController extends Controller
 {
     //
-    public function blog(){
+    public function blog(Request $request){
 
-        $data['getRecord'] = Blog::getRecord();
+        $data['getRecord'] = Blog::getRecord($request);
         return view('dackend/blog/list', $data);
     }
     public function add_blog(){

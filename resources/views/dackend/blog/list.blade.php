@@ -26,6 +26,53 @@
                 <a href="{{ route('add_blog') }}" class="btn btn-primary pull-right" style="float: right;">Add New</a>
             </h5>
 
+            <div class="card">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Vertical Form</h5> -->
+
+                <!-- Vertical Form -->
+                <form class="row g-3" method="get">
+                  <div class="col-md-1">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" class="form-control" id="id" value="{{ Request::get('id')}}" name="id">
+                  </div>
+                  <div class="col-md-2">
+                    <label for="username" class="form-label">UserName</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ Request::get('username')}}">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="inputEmail4" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ Request::get('title')}}">
+                  </div>
+                  <div class="col-md-2">
+                    <label for="category" class="form-label">category</label>
+                    <input type="text" class="form-control" id="category" name="category" value="{{ Request::get('category')}}">
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputPassword4" class="form-label">Status *</label>
+                      <select class="form-control" name="status">
+
+                      <option value="">Status</option>
+                      <option value="1" {{ ( Request::get('status') == 1) ? 'selected' : '' }}>Active</option>
+                      <option value="100" {{ ( Request::get('status') == 100) ? 'selected' : '' }}>Inactive</option>
+                      </select>
+                  </div>
+                  <div class="col-md-1">
+                    <label for="inputPassword4" class="form-label">Publish *</label>
+                      <select class="form-control" name="is_publish">
+                      <option value="">Publish</option>
+                        <option value="1" {{ ( Request::get('is_publish') == 1) ? 'selected' : '' }}>Yes</option>
+                        <option value="100" {{ ( Request::get('is_publish') == 100) ? 'selected' : '' }}>No</option>
+                      </select>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a type="reset" class="btn btn-secondary" href="{{ url('panel/blog/list') }}">Reset</a>
+                  </div>
+                </form><!-- Vertical Form -->
+
+              </div>
+            </div>
               <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
