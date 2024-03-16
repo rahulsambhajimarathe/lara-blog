@@ -52,7 +52,12 @@ class Blog extends Model
             }
             $return = $return->where('blogs.is_publish', '=', $is_publish);
         }
-    
+        if(!empty($request->input('start_date'))) {
+            $return = $return->whereDate('blogs.created_at', '>=', $request->input('start_date'));
+        }
+        if(!empty($request->input('end_date'))) {
+            $return = $return->whereDate('blogs.created_at', '<=', $request->input('end_date'));
+        }
         $return = $return->where('blogs.is_delete', '=', 0)
             ->orderBy('blogs.id', 'desc')
             ->paginate(20);

@@ -22,7 +22,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">
-              Blog List
+              Blog List ( Total : {{ $getRecord->total() }})
                 <a href="{{ route('add_blog') }}" class="btn btn-primary pull-right" style="float: right;">Add New</a>
             </h5>
 
@@ -65,8 +65,18 @@
                         <option value="100" {{ ( Request::get('is_publish') == 100) ? 'selected' : '' }}>No</option>
                       </select>
                   </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                  <div class="col-md-2">
+                    <label for="category" class="form-label">Stared Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ Request::get('start_date')}}">
+                  </div>
+                  <div class="col-md-2">
+                    <label for="category" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ Request::get('end_date')}}">
+                  </div>
+
+                  <div class="text-center col-md-2">
+                    <label class="form-label d-block">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary ">Submit</button>
                     <a type="reset" class="btn btn-secondary" href="{{ url('panel/blog/list') }}">Reset</a>
                   </div>
                 </form><!-- Vertical Form -->
