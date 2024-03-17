@@ -15,7 +15,7 @@
 
     <section class="section">
       <div class="row">
-      @include("fronEnd.layout._message")
+      @include("frontEnd.layout._message")
 
         <div class="col-lg-12">
 
@@ -31,7 +31,7 @@
                 <!-- <h5 class="card-title">Vertical Form</h5> -->
 
                 <!-- Vertical Form -->
-                <form class="row g-3" method="get">
+                <form class="row g-3 py-3" method="get">
                   <div class="col-md-1">
                     <label for="id" class="form-label">ID</label>
                     <input type="text" class="form-control" id="id" value="{{ Request::get('id')}}" name="id">

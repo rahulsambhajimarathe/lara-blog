@@ -1,4 +1,4 @@
-@extends("fronEnd\layout\app")
+@extends("frontEnd\layout\app")
     @section("content")
     <!-- Navbar Start -->
 
@@ -731,10 +731,4 @@
       </div>
     </div>
     <!-- Blog End -->
-
-    <!-- Footer Start -->
-
-    <!-- Footer End -->
-
-    <!-- Back to Top -->
 @endsection

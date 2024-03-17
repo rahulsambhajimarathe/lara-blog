@@ -15,7 +15,7 @@
 
     <section class="section">
       <div class="row">
-      @include("fronEnd.layout._message")
+      @include("frontEnd.layout._message")
 
         <div class="col-lg-12">
 

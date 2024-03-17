@@ -24,6 +24,11 @@ use GuzzleHttp\Middleware;
 
 
 Route::get('/', [HomeController::class, "homeController"]);
+Route::get('/about', [HomeController::class, "aboutController"]);
+Route::get('/teams', [HomeController::class, "teamController"]);
+Route::get('/gallery', [HomeController::class, "galleryController"]);
+Route::get('/blog', [HomeController::class, "blogController"]);
+Route::get('/contact', [HomeController::class, "contactController"]);
 
 
 Route::get('/login', [AuthController::class, "loginController"])->name("login");
@@ -90,3 +95,6 @@ Route::group(['middleware' => 'adminuser'], function() {
     // // blog delete
         Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_post'])->name('delete_post');
 });
+
+
+Route::get('/{slug}', [HomeController::class, "slugBlogController"]);

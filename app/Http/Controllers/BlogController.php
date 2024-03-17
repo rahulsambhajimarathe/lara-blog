@@ -38,7 +38,8 @@ class BlogController extends Controller
         $checkslug = Blog::where('slug', '=', $slug)->first();
 
         if(!empty($checkslug)){
-            $dbslug =  $checkslug->slug.'-'.$checkslug->id;
+            // $dbslug =  $checkslug->slug.'-'.$checkslug->id;
+            $dbslug =  $checkslug->slug;
         }else{
             $dbslug = $slug;
         }

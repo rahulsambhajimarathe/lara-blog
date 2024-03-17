@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Blog;
 class Category extends Model
 {
     use HasFactory;
@@ -24,5 +24,12 @@ class Category extends Model
     }
     static public function getSingle($id){
         return Category::find($id);
+    }
+    public function totalBlog(){
+        return $this->hasMany(Blog::class, 'category_id')
+        ->where('blogs.status', '=', 1)
+        ->where('blogs.is_publish', '=', 1)
+        ->where('blogs.is_delete', '=' , 0)
+        ->count();
     }
 }
