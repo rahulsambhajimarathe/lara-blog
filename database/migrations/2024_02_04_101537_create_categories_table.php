@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('meta_title', 300)->nullable(); // Meta title for SEO
             $table->text('meta_description')->nullable(); // Meta description for SEO
             $table->text('meta_keywords')->nullable(); // Meta keywords for SEO
+            $table->tinyInteger('is_menu')->default(0)->comment('0 not menu, 1 menu'); 
             $table->tinyInteger('status')->default(0)->comment('0 not delete, 1 delete'); // Status of the category (active/inactive)
             $table->tinyInteger('is_delete')->default(0)->comment('0 not delete, 1 delete'); // Flag to soft delete the category
             $table->timestamps();

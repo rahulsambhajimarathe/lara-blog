@@ -48,6 +48,19 @@ class Blog extends Model
             ->paginate(9);
         return $return;
     }
+    static public function getRecordFrontCategory($category_id) {
+        $return =  DB::table('blogs')
+            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')
+            ->join('users', "users.id", '=', "blogs.user_id")
+            ->join('categories', "categories.id", '=', "blogs.category_id")
+            ->where('blogs.category_id', '=', $category_id)
+            ->where('blogs.status', '=', 1)
+            ->where('blogs.is_publish', '=', 1)
+            ->where('blogs.is_delete', '=' , 0)
+            ->orderBy('blogs.id', 'desc')
+            ->paginate(9);
+        return $return;
+    }
     static public function getRecordRecent() {
         return DB::table('blogs')
             ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')

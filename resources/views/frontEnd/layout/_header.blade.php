@@ -24,11 +24,18 @@
         >
           <div class="navbar-nav font-weight-bold mx-auto py-0">
             <a href="{{ url('') }}" class="nav-item nav-link active">Home</a>
-            <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
+            @php
+              $getCategoryHeader = App\Models\Category::getCategoryMenu()
+            @endphp
+
+            @foreach($getCategoryHeader as $value)
+            <a href="{{ $value->slug }}" class="nav-item nav-link">{{$value->name}}</a>
+            @endforeach
+            <!-- <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
             <a href="{{ url('teams') }}" class="nav-item nav-link">Teachers</a>
-            <a href="{{ url('gallery') }}" class="nav-item nav-link">Gallery</a>
+            <a href="{{ url('gallery') }}" class="nav-item nav-link">Gallery</a> -->
             <a href="{{ url('blog') }}" class="nav-item nav-link">Blog</a>
-            <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
+            <!-- <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a> -->
           </div>
           <!-- <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>

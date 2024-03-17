@@ -27,17 +27,26 @@ class HomeController extends Controller
         return view("frontEnd/blog", $data);
     }
     function slugBlogController($slug){
+        $getCategory = Category::getSlug($slug);
         $getRecord = Blog::getRecordSlug($slug);
-        if(!empty($getRecord)){
-            $data['getRecordRecent'] = Blog::getRecordRecent();
-            $data['getCategory'] = Category::getCategory();
-            $data['getRelatedTag'] = Blog::getRelatedTag($getRecord->id);
-            $data['getRelatedCategory'] = Blog::getRelatedCategory($getRecord->category_id, $getRecord->id);
-            $data['getRecord'] = $getRecord;
-            return view("frontEnd/blogDeatail", $data);
+        if(!empty($getCategory)){
+            $data['getRecord'] = Blog::getRecordFrontCategory($getCategory->id);
+            return view("frontEnd/blog", $data);
         }else{
-            abort(404);
+            if(!empty($getRecord)){
+                $data['getRecordRecent'] = Blog::getRecordRecent();
+                $data['getCategory'] = Category::getCategory();
+                $data['getRelatedTag'] = Blog::getRelatedTag($getRecord->id);
+                $data['getRelatedCategory'] = Blog::getRelatedCategory($getRecord->category_id, $getRecord->id);
+                $data['getRecord'] = $getRecord;
+                return view("frontEnd/blogDeatail", $data);
+            }else{
+                abort(404);
+            }
         }
+        
+
+        
     }
     function contactController(){
         

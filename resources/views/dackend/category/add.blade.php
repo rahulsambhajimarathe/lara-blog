@@ -65,6 +65,13 @@
                     <option value="0">Inactive</option>
                     </select>
                 </div>
+                <div class="col-12">
+                    <label for="inputPassword4" class="form-label">Menu *</label>
+                    <select class="form-control" name="menu">
+                    <option value="1">Yes</option>
+                    <option value="0">Not</option>
+                    </select>
+                </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

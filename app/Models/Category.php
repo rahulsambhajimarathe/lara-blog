@@ -25,11 +25,25 @@ class Category extends Model
     static public function getSingle($id){
         return Category::find($id);
     }
+    static public function getSlug($slug){
+        return self::select('categories.*')
+        ->where('slug', '=', $slug)
+        ->where('is_delete', '=', 0)
+        ->where('status', '=', 1)
+        ->first(); 
+    }
     public function totalBlog(){
         return $this->hasMany(Blog::class, 'category_id')
         ->where('blogs.status', '=', 1)
         ->where('blogs.is_publish', '=', 1)
         ->where('blogs.is_delete', '=' , 0)
         ->count();
+    }
+    static public function getCategoryMenu(){
+        return self::select('categories.*')
+                    ->where('is_delete', '=', 0)
+                    ->where('is_menu', '=', 1)
+                    ->where('status', '=', 1)
+                    ->get(); 
     }
 }
