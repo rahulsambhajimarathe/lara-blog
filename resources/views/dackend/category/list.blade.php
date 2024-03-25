@@ -54,7 +54,7 @@
                             <td>{{ $data->meta_description }}</td>
                             <td>{{ $data->meta_keywords }}</td>
                             <td>{{ empty($data->status)? 'inactive': 'Active' }}</td>
-                            <td>{{ empty($data->is_menu)? 'Yes': 'No' }}</td>
+                            <td>{{ empty($data->is_menu)? 'No': 'Yes' }}</td>
                             <td>{{ date('d-m-Y H:i A', strtotime($data->created_at)) }}</td>
                             <td><a href="{{ route('delete_category', ['id' => $data->id]) }}" class="btn btn-danger btn-sm" onclick="return confirm(' Are your sure you want to delete record?');" >Delete</a> | <a href="{{ route('edit_category', ['id' => $data->id]) }}" class="btn btn-primary btn-sm">Edit</a></td>
                         </tr>                        

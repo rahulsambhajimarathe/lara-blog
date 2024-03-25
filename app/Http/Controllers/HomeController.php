@@ -10,9 +10,11 @@ class HomeController extends Controller
 {
     //
     function homeController(){
-        return view("frontEnd/home");
+        $data['meta_title'] = 'Blog Page';
+        return view("frontEnd/home", $data);
     }
     function aboutController(){
+        
         return view("frontEnd/about");
     }
     function teamController(){
@@ -23,13 +25,17 @@ class HomeController extends Controller
     }
     function blogController(Request $request){
         $data['getRecord'] = Blog::getRecordFront($request);
-
+        $data['meta_title'] = 'Blog Page';
         return view("frontEnd/blog", $data);
     }
     function slugBlogController($slug){
         $getCategory = Category::getSlug($slug);
         $getRecord = Blog::getRecordSlug($slug);
         if(!empty($getCategory)){
+            $data['meta_title'] = $getCategory->meta_title;
+            $data['meta_description'] = $getCategory->meta_description;
+            $data['meta_keywords'] = $getCategory->meta_keywords;
+            $data['header_title'] = $getCategory->title;
             $data['getRecord'] = Blog::getRecordFrontCategory($getCategory->id);
             return view("frontEnd/blog", $data);
         }else{
@@ -38,6 +44,9 @@ class HomeController extends Controller
                 $data['getCategory'] = Category::getCategory();
                 $data['getRelatedTag'] = Blog::getRelatedTag($getRecord->id);
                 $data['getRelatedCategory'] = Blog::getRelatedCategory($getRecord->category_id, $getRecord->id);
+                $data['meta_title'] = $getRecord->title;
+                $data['meta_description'] = $getRecord->meta_description;
+                $data['meta_keywords'] = $getRecord->meta_keywords;
                 $data['getRecord'] = $getRecord;
                 return view("frontEnd/blogDeatail", $data);
             }else{

@@ -23,7 +23,7 @@ class Blog extends Model
     // }
     static public function getRecordSlug($slug) {
         return DB::table('blogs')
-            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')
+            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name', 'categories.slug as cat_slug')
             ->join('users', "users.id", '=', "blogs.user_id")
             ->join('categories', "categories.id", '=', "blogs.category_id")
             ->where('blogs.status', '=', 1)
@@ -34,7 +34,7 @@ class Blog extends Model
     }
     static public function getRecordFront(Request $request) {
         $return =  DB::table('blogs')
-            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')
+            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name' , 'categories.slug as cat_slug')
             ->join('users', "users.id", '=', "blogs.user_id")
             ->join('categories', "categories.id", '=', "blogs.category_id");
             if(!empty($request->input('q'))){
@@ -50,7 +50,7 @@ class Blog extends Model
     }
     static public function getRecordFrontCategory($category_id) {
         $return =  DB::table('blogs')
-            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')
+            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name', 'categories.slug as cat_slug')
             ->join('users', "users.id", '=', "blogs.user_id")
             ->join('categories', "categories.id", '=', "blogs.category_id")
             ->where('blogs.category_id', '=', $category_id)
@@ -63,7 +63,7 @@ class Blog extends Model
     }
     static public function getRecordRecent() {
         return DB::table('blogs')
-            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')
+            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name', 'categories.slug as cat_slug')
             ->join('users', "users.id", '=', "blogs.user_id")
             ->join('categories', "categories.id", '=', "blogs.category_id")
             ->where('blogs.status', '=', 1)
@@ -75,7 +75,7 @@ class Blog extends Model
     }
     static public function getRelatedCategory($category_id, $id) {
         return DB::table('blogs')
-            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')
+            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name', 'categories.slug as cat_slug')
             ->join('users', "users.id", '=', "blogs.user_id")
             ->join('categories', "categories.id", '=', "blogs.category_id")
             ->where('blogs.id', '!=', $id)
@@ -90,7 +90,7 @@ class Blog extends Model
 
     static public function getRecord(Request $request) {
         $return = DB::table('blogs')
-            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name')
+            ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name', 'categories.slug as cat_slug')
             ->join('users', "users.id", '=', "blogs.user_id")
             ->join('categories', "categories.id", '=', "blogs.category_id");
     

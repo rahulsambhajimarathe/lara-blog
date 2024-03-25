@@ -3,7 +3,13 @@
    <!-- Header Start -->
    <div class="container-fluid bg-primary mb-5">
       <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-        <h3 class="display-3 font-weight-bold text-white">Our Blog</h3>
+        <h3 class="display-3 font-weight-bold text-white">
+          @if(!empty($header_title))
+            {{$header_title}}
+          @else
+            Out BLog
+          @endif
+        </h3>
       </div>
     </div>
     <!-- Header End -->
@@ -32,9 +38,11 @@
                     {{$value->user_name }}
                   </small>
                   <small class="mr-3">
+                    <a href="{{url($value->cat_slug)}}">
                     <i class="fa fa-folder text-primary"></i>
                     {{$value->category_name }}
-                    </small>
+                    </a>  
+                  </small>
                   <small class="mr-3">
                     <i class="fa fa-comments text-primary"></i> 0</small>
                 </div>

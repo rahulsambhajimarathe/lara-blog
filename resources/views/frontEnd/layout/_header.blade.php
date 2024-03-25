@@ -23,13 +23,13 @@
           id="navbarCollapse"
         >
           <div class="navbar-nav font-weight-bold mx-auto py-0">
-            <a href="{{ url('') }}" class="nav-item nav-link active">Home</a>
+            <a href="{{ url('') }}" class="nav-item nav-link @if(Request::segment(1) == '') active @endif">Home </a>
             @php
               $getCategoryHeader = App\Models\Category::getCategoryMenu()
             @endphp
 
             @foreach($getCategoryHeader as $value)
-            <a href="{{ $value->slug }}" class="nav-item nav-link">{{$value->name}}</a>
+            <a href="{{ $value->slug }}" class="nav-item nav-link @if(Request::segment(1) == $value->slug) active @endif ">{{$value->name}}</a>
             @endforeach
             <!-- <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
             <a href="{{ url('teams') }}" class="nav-item nav-link">Teachers</a>

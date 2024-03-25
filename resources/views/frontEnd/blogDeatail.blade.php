@@ -10,7 +10,8 @@
             <div class="d-flex">
               <p class="mr-3"><i class="fa fa-user text-primary"></i> {{$getRecord->user_name}}</p>
               <p class="mr-3">
-                <i class="fa fa-folder text-primary"></i> {{$getRecord->category_name}}
+              <a href="{{url($getRecord->cat_slug)}}">
+                <i class="fa fa-folder text-primary"></i> {{$getRecord->category_name}}</a>
               </p>
               <p class="mr-3"><i class="fa fa-comments text-primary"></i> 0</p>
             </div>
@@ -36,7 +37,9 @@
                   </a>
                     <div class="d-flex">
                       <small class="mr-3"><i class="fa fa-user text-primary"></i> {{ $value->user_name }}</small>
-                      <small class="mr-3"><i class="fa fa-folder text-primary"></i> {{ $value->category_name }}</small>
+                      
+                      <small class="mr-3"><i class="fa fa-folder text-primary"></i>
+                       {{ $value->category_name }}</small>
                       <small class="mr-3"><i class="fa fa-comments text-primary"></i> 0</small>
                     </div>
                   </div>
@@ -184,7 +187,6 @@
             <h2 class="mb-4">Categories</h2>
             <ul class="list-group list-group-flush">
               @foreach($getCategory as $value)
-                
               <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                 <a href="{{$value->slug}}">{{$value->name}}</a>
                 <span class="badge badge-primary badge-pill">{{ $value->totalBlog() }}</span>
@@ -209,7 +211,7 @@
                   </a>
                   <div class="d-flex">
                     <small class="mr-3"><i class="fa fa-user text-primary"></i> {{$value->user_name}}</small>
-                    <small class="mr-3"><i class="fa fa-folder text-primary"></i> {{$value->category_name}}</small>
+                    <small class="mr-3"><a href="{{url($value->cat_slug)}}"><i class="fa fa-folder text-primary"></i> {{$value->category_name}}</a></small>
                     <small class="mr-3"><i class="fa fa-comments text-primary"></i> 0</small>
                   </div>
                 </div>
