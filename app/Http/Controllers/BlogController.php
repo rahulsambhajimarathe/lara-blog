@@ -56,12 +56,7 @@ class BlogController extends Controller
         Blogtags::InsertDeleteTag($save->id, $request->tags);
         return redirect('panel/blog/list/')->with("success", "blog creat success full");
     }
-    public function delete_post($id){               
-        $save = Blog::getSingle($id);
-        $save->is_delete = 1;
-        $save->save();
-        return redirect()->back()->with('success', "Category successfully deleted");
-    }
+
     public function post_edit($id){
         $data['getCategory'] = Category::getCategory();
         $data['getRecord'] = Blog::getSingle($id);
@@ -95,5 +90,12 @@ class BlogController extends Controller
         $save->save();
         Blogtags::InsertDeleteTag($save->id, $request->tags);
         return redirect('panel/blog/list/')->with("success", "blog success full updated");
+    }
+
+    public function delete_post($id){               
+        $save = Blog::getSingle($id);
+        $save->is_delete = 1;
+        $save->save();
+        return redirect()->back()->with('success', "Category successfully deleted");
     }
 }

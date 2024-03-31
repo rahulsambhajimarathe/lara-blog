@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserContoller;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PageController;
 
 use GuzzleHttp\Middleware;
 
@@ -94,6 +95,21 @@ Route::group(['middleware' => 'adminuser'], function() {
         
     // // blog delete
         Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_post'])->name('delete_post');
+
+
+    // page Routes
+    Route::get('panel/page/list', [PageController::class, 'page']);
+
+        // page add
+        Route::get('panel/page/add', [PageController::class, 'add_page'])->name('add_page');
+        Route::post('panel/page/add', [PageController::class, 'add_page_create']);
+
+        // page edit
+        Route::get('panel/page/edit/{id}', [PageController::class, 'page_edit'])->name('edit_page');
+        Route::post('panel/page/edit/{id}', [PageController::class, 'update_page']);
+        
+        // page delete
+        // Route::get('panel/page/delete/{id}', [PageController::class, 'delete_page'])->name('delete_page');
 });
 
 

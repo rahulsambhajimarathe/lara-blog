@@ -22,7 +22,16 @@
           <i class="bi bi-question-circle"></i>
           <span>Blog</span>
         </a>
-      </li><!-- End Blog Page Nav -->
+      </li>
+      <!-- End Blog Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'page') collapsed @endif" href="{{url('panel/page/list')}}">
+          <i class="bi bi-question-circle"></i>
+          <span>Page</span>
+        </a>
+      </li>
+      <!-- End Blog Page Nav -->
 
 
       <!-- <li class="nav-item">
