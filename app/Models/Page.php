@@ -15,4 +15,7 @@ class Page extends Model
     static public function getSingle($id){
         return self::find($id);
     }
+    static public function getSlug($slug){
+        return self::where('slug', '=', $slug)->first();
+    }
 }

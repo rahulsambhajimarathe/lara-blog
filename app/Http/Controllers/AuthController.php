@@ -8,11 +8,18 @@ use App\Mail\ForgotPassword;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Page;
 class AuthController extends Controller
 {
     //
     function loginController(){
-        return view("auth/login");
+        
+        $getPage = Page::getSlug('login');
+        $data['meta_title'] = !empty($getPage)  ? $getPage->meta_title : '';
+        $data['meta_keywords'] = !empty($getPage)  ? $getPage->meta_keywords : '';
+        $data['meta_description'] = !empty($getPage)  ? $getPage->meta_description : '';
+
+        return view("auth/login", $data);
     }
     function user_loginController(request $request){
         $remember = !empty($request->remember) ? true : false;
@@ -40,7 +47,11 @@ class AuthController extends Controller
     }
 
     function registerController(){
-        return view("auth/register");
+        $getPage = Page::getSlug('register');
+        $data['meta_title'] = !empty($getPage)  ? $getPage->meta_title : '';
+        $data['meta_keywords'] = !empty($getPage)  ? $getPage->meta_keywords : '';
+        $data['meta_description'] = !empty($getPage)  ? $getPage->meta_description : '';
+        return view("auth/register", $data);
     }
     function userregisterController(Request $request){
 
@@ -78,7 +89,11 @@ class AuthController extends Controller
 
 
     function forgetController(){
-        return view("auth/forget");
+        $getPage = Page::getSlug('forget-password');
+        $data['meta_title'] = !empty($getPage)  ? $getPage->meta_title : '';
+        $data['meta_keywords'] = !empty($getPage)  ? $getPage->meta_keywords : '';
+        $data['meta_description'] = !empty($getPage)  ? $getPage->meta_description : '';
+        return view("auth/forget", $data);
     }
     function user_forgetController(Request $request){
         $user = User::where('email', "=", $request->email)->first();

@@ -31,10 +31,10 @@
                   <label for="inputNanme4" class="form-label">Title *</label>
                   <input type="text" class="form-control" id="inputNanme4" name="title" value="{{$getRecord->title }}" required>title
                 </div>
-                <div class="col-12">
+                <!-- <div class="col-12">
                   <label for="inputNanme4" class="form-label">Slug *</label>
                   <input type="text" class="form-control" id="inputNanme4" name="slug" required value="{{$getRecord->slug }}">
-                </div>
+                </div> -->
                     <div class="col-12">
                         <label for="inputNanme4" class="form-label"> Description *</label>
                         <textarea class="tinymce-editor" name="content_data">

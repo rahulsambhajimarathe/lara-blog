@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Models\Blog;
 class PageController extends Controller
 {
     //
     public function page(Request $request){
-
+        
         $data['getRecord'] = Page::getRecord($request);
         return view('dackend/page/list', $data);
     }
