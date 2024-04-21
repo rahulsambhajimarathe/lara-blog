@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Blogtags;
+use Illuminate\Support\Facades\Auth;
+
 class Blog extends Model
 {
     use HasFactory;
@@ -93,7 +95,9 @@ class Blog extends Model
             ->select('blogs.*', 'users.name as user_name', 'categories.name as category_name', 'categories.slug as cat_slug')
             ->join('users', "users.id", '=', "blogs.user_id")
             ->join('categories', "categories.id", '=', "blogs.category_id");
-    
+        if(!empty(Auth::check()) && Auth::user()->is_admin != 1){
+            $return = $return->where('blogs.user_id', '=', Auth::user()->id);
+        }
         if(!empty($request->input('id'))) {
             $return = $return->where('blogs.id', 'like', '%'.$request->input('id')."%");
         }

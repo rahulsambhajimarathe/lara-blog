@@ -34,7 +34,7 @@
             <!-- <a href="{{ url('about') }}" class="nav-item nav-link">About</a>
             <a href="{{ url('teams') }}" class="nav-item nav-link">Teachers</a>
             <a href="{{ url('gallery') }}" class="nav-item nav-link">Gallery</a> -->
-            <a href="{{ url('blog') }}" class="nav-item nav-link">Blog</a>
+            <a href="{{ url('blog') }}" class="nav-item nav-link @if(Request::segment(1) == 'blog') active @endif">Blog</a>
             <!-- <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a> -->
           </div>
           <!-- <div class="nav-item dropdown">

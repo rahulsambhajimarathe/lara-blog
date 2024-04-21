@@ -50,7 +50,7 @@ Route::get('/logout', [AuthController::class, "logout"])->name('logout');
 
 
 
-Route::group(['middleware' => 'adminuser'], function() {
+Route::group(['middleware' => 'admin'], function() {
     Route::get('panel/dashboard', [DashboardController::class, "adminpanel"]);
 
 
@@ -110,6 +110,24 @@ Route::group(['middleware' => 'adminuser'], function() {
         
         // page delete
         // Route::get('panel/page/delete/{id}', [PageController::class, 'delete_page'])->name('delete_page');
+});
+Route::group(['middleware' => 'adminuser'], function() {
+    Route::get('panel/dashboard', [DashboardController::class, "adminpanel"]);
+
+    // blog Routes
+    Route::get('panel/blog/list', [BlogController::class, 'blog']);
+
+        // blog add
+        Route::get('panel/blog/add', [BlogController::class, 'add_blog'])->name('add_blog');
+        Route::post('panel/blog/add', [BlogController::class, 'add_blog_create']);
+
+        // // blog edit
+        Route::get('panel/blog/edit/{id}', [BlogController::class, 'post_edit'])->name('edit_post');
+        Route::post('panel/blog/edit/{id}', [BlogController::class, 'update_post']);
+        
+    // // blog delete
+        Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_post'])->name('delete_post');
+
 });
 
 

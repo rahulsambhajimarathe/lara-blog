@@ -9,14 +9,14 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
+      @if(Auth::User()->is_admin == 1)
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'category') collapsed @endif" href="{{url('panel/category/list')}}">
           <i class="bi bi-question-circle"></i>
           <span>Category</span>
         </a>
       </li><!-- End Category Page Nav -->
-
+      @endif
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'blog') collapsed @endif" href="{{url('panel/blog/list')}}">
           <i class="bi bi-question-circle"></i>
@@ -24,13 +24,14 @@
         </a>
       </li>
       <!-- End Blog Page Nav -->
-
+      @if(Auth::User()->is_admin == 1)
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'page') collapsed @endif" href="{{url('panel/page/list')}}">
           <i class="bi bi-question-circle"></i>
           <span>Page</span>
         </a>
       </li>
+      @endif
       <!-- End Blog Page Nav -->
 
 
@@ -50,12 +51,14 @@
         </a>
       </li><!-- End Help Page Nav -->
 
+      @if(Auth::User()->is_admin == 1)
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'user') collapsed @endif" href={{route('user-list')}}>
           <i class="bi bi-person-fill"></i>
           <span>User</span>
         </a>
       </li><!-- End User Page Nav -->
+      @endif
 
       <li class="nav-item">
         <a class="nav-link @if(Request::segment(2) != 'inbox') collapsed @endif" href="{{url('panel/inbox/list')}}">

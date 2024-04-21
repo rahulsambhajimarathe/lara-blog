@@ -88,7 +88,9 @@
                 <thead>
                   <tr>
                   <th scope="col">Id</th>
+                  @if(Auth::User()->is_admin == 1)
                     <th scope="col">UserName</th>
+                    @endif
                     <th scope="col">title</th>
                     <th scope="col">Category</th>
                     <th scope="col">status</th>
@@ -101,7 +103,9 @@
                         @forelse($getRecord as $data)
                             <tr>
                                 <th scope="row">{{$data->id}}</th>
+                                @if(Auth::User()->is_admin == 1)
                                 <td>{{$data->user_name}}</td>
+                                @endif
                                 <td>{{ $data->title }}</td>
                                 <td>{{ $data->category_name }}</td>
                                 <td>
