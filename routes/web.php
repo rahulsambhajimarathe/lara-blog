@@ -128,6 +128,8 @@ Route::group(['middleware' => 'adminuser'], function() {
     // // blog delete
         Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_post'])->name('delete_post');
 
+    Route::post('blog-comment-submit', [HomeController::class, 'blogCommentSubmit'])->name('blogCommentSubmit');
+
 });
 
 

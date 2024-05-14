@@ -7,6 +7,8 @@ use App\Models\Blog;
 use Symfony\Contracts\Service\Attribute\Required;
 use App\Models\Category;
 use App\Models\Page;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     //
@@ -73,6 +75,7 @@ class HomeController extends Controller
                 $data['getRecordRecent'] = Blog::getRecordRecent();
                 $data['getCategory'] = Category::getCategory();
                 $data['getRelatedTag'] = Blog::getRelatedTag($getRecord->id);
+                $data['getRelatedComment'] = Blog::getRelatedComment($getRecord->id);
                 $data['getRelatedCategory'] = Blog::getRelatedCategory($getRecord->category_id, $getRecord->id);
                 $data['meta_title'] = $getRecord->title;
                 $data['meta_description'] = $getRecord->meta_description;
@@ -86,6 +89,15 @@ class HomeController extends Controller
         
 
         
+    }
+    function blogCommentSubmit(Request $request){
+        $save = new Comment;
+        $save->user_id = Auth::user()->id;
+        $save->blog_id = $request->blog_id;
+        $save->comment = $request->comment;
+        $save->save();
+
+        return redirect()->back()->with("success", "Your comment successfully");
     }
 
 }

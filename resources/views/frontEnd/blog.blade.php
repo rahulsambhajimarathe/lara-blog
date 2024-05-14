@@ -43,8 +43,6 @@
                     {{$value->category_name }}
                     </a>  
                   </small>
-                  <small class="mr-3">
-                    <i class="fa fa-comments text-primary"></i> 0</small>
                 </div>
                 <p>
                   {!! strip_tags(Str::substr($value->discripttion,0,165)) !!}...

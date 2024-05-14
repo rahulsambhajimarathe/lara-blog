@@ -5,6 +5,7 @@
     <div class="container pt-5">
       <div class="row">
         <div class="col-lg-8">
+        
           <div class="d-flex flex-column text-left mb-3">
             <h1 class="mb-3">{{$getRecord->title}}</h1>
             <div class="d-flex">
@@ -13,7 +14,7 @@
               <a href="{{url($getRecord->cat_slug)}}">
                 <i class="fa fa-folder text-primary"></i> {{$getRecord->category_name}}</a>
               </p>
-              <p class="mr-3"><i class="fa fa-comments text-primary"></i> 0</p>
+              <p class="mr-3"><i class="fa fa-comments text-primary"></i> {{count($getRelatedComment)}}</p>
             </div>
           </div>
           <div class="mb-5">
@@ -40,7 +41,7 @@
                       
                       <small class="mr-3"><i class="fa fa-folder text-primary"></i>
                        {{ $value->category_name }}</small>
-                      <small class="mr-3"><i class="fa fa-comments text-primary"></i> 0</small>
+                      <small class="mr-3"><i class="fa fa-comments text-primary"></i> {{count($getRelatedComment)}}</small>
                     </div>
                   </div>
                 </div>
@@ -48,31 +49,32 @@
             </div>
           </div>
 
+
+
+
           <!-- Comment List -->
           <div class="mb-5">
-            <h2 class="mb-4">3 Comments</h2>
+            <h2 class="mb-4">{{count($getRelatedComment)}} Comments</h2>
+
+            @foreach($getRelatedComment as $comment)
             <div class="media mb-4">
-              <img
-                src="assets/frontend/img/user.jpg"
-                alt="Image"
-                class="img-fluid rounded-circle mr-3 mt-1"
-                style="width: 45px"
-              />
-              <div class="media-body">
+              <img src="assets/frontend/img/user.jpg" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px" />
+
+            <div class="media-body">
                 <h6>
-                  John Doe <small><i>01 Jan 2045 at 12:00pm</i></small>
+                {{$comment->user->name}} <small><i>{{date('d M Y', strtotime($comment->created_at))}} at {{ date('h:i A', strtotime($comment->created_at))}}</i></small>
                 </h6>
                 <p>
-                  Diam amet duo labore stet elitr ea clita ipsum, tempor labore
-                  accusam ipsum et no at. Kasd diam tempor rebum magna dolores
-                  sed sed eirmod ipsum. Gubergren clita aliquyam consetetur
-                  sadipscing, at tempor amet ipsum diam tempor consetetur at
-                  sit.
+                  {{$comment->comment}}
                 </p>
                 <button class="btn btn-sm btn-light">Reply</button>
               </div>
             </div>
-            <div class="media mb-4">
+
+
+            @endforeach
+
+            <!-- <div class="media mb-4">
               <img
                 src="assets/frontend/img/user.jpg"
                 alt="Image"
@@ -113,41 +115,23 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
 
           <!-- Comment Form -->
           <div class="bg-light p-5">
+          @include("frontEnd.layout._message")
             <h2 class="mb-4">Leave a comment</h2>
-            <form>
+            <form method="post" action="{{url('blog-comment-submit')}}">
+              @csrf
+              <input type="hidden" name="blog_id" value="{{$getRecord->id}}">
               <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" class="form-control" id="name" />
-              </div>
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" class="form-control" id="email" />
-              </div>
-              <div class="form-group">
-                <label for="website">Website</label>
-                <input type="url" class="form-control" id="website" />
-              </div>
-
-              <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea
-                  id="message"
-                  cols="30"
-                  rows="5"
-                  class="form-control"
-                ></textarea>
+                <label for="message">Comment *</label>
+                <textarea id="message" cols="30" rows="5" class="form-control" name="comment"></textarea>
               </div>
               <div class="form-group mb-0">
-                <input
-                  type="submit"
-                  value="Leave Comment"
-                  class="btn btn-primary px-3"
-                />
+                <input type="submit" value="Leave Comment" class="btn btn-primary px-3"/>
               </div>
             </form>
           </div>
@@ -196,6 +180,8 @@
           </div>
           <!-- Recent Post -->
 
+
+
           @if(!empty($getRecordRecent->count()))
             
 
@@ -212,7 +198,6 @@
                   <div class="d-flex">
                     <small class="mr-3"><i class="fa fa-user text-primary"></i> {{$value->user_name}}</small>
                     <small class="mr-3"><a href="{{url($value->cat_slug)}}"><i class="fa fa-folder text-primary"></i> {{$value->category_name}}</a></small>
-                    <small class="mr-3"><i class="fa fa-comments text-primary"></i> 0</small>
                   </div>
                 </div>
               </div>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Blogtags;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class Blog extends Model
@@ -168,20 +169,12 @@ class Blog extends Model
         return $this->hasMany(Blogtags::class, 'blog_id');
     }
     public function tags() {
-        // return $this->hasMany(Blogtags::class, 'blog_id');
-        // return $this->hasMany(Blogtags::class, 'blog_id', 'id');
         return $this->hasMany(Blogtags::class, 'blog_id', 'id');
     }
-    // static public function getRelatedTag($id) {
-    //     return DB::table('blogs')
-    //         ->select('blogtags.*')
-    //         ->where('blog_id', '=', $id);
-    //     return Blog::find($id);
-    // }
-    // public static function getRelatedTag($id)
-    // {
-    //     return self::with('tags')->find($id);
-    // }
+    public function comment() {
+        return $this->hasMany(Comment::class, 'blog_id', 'id')->orderByDesc('comments.id');
+    }
+
 
     public function blog()
     {
@@ -193,6 +186,16 @@ class Blog extends Model
 
         if ($blog) {
             return $blog->tags;
+        } else {
+            return null;
+        }
+    }
+    public static function getRelatedComment($id)
+    {
+        $blog = self::find($id);
+
+        if ($blog) {
+            return $blog->comment;
         } else {
             return null;
         }
